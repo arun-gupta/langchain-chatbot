@@ -1,0 +1,23 @@
+services:
+  app:
+    build: .
+    container_name: multimodel-chatbot
+    ports:
+      - "8501:8501"
+    environment:
+      - STREAMLIT_SERVER_HEADLESS=true
+      - STREAMLIT_SERVER_PORT=8501
+      # Uncomment and set these as needed, or use an .env file
+      # - OPENAI_API_KEY=your-openai-api-key
+      # - GEMINI_API_KEY=your-gemini-api-key
+      # - ANTHROPIC_API_KEY=your-anthropic-api-key
+      # - VERTEXAI_PROJECT_ID=your-gcp-project-id
+      # - VERTEXAI_REGION=us-central1
+      # - GOOGLE_APPLICATION_CREDENTIALS=/app/your-service-account-file.json
+    volumes:
+      - .:/app
+      # Uncomment to mount your .env file
+      # - ./your.env:/app/.env
+      # Uncomment to mount your Google credentials
+      # - /path/to/your/service-account-file.json:/app/your-service-account-file.json
+    command: streamlit run app.py
